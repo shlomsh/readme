@@ -1,0 +1,1127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shlomi's Manager README</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 50%, #e2e8f0 100%);
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-emoji {
+            font-size: 1.8rem;
+        }
+
+        .admin-btn {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .admin-btn:hover::before {
+            left: 100%;
+        }
+
+        .admin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            z-index: 1001;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 6rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 0%, transparent 50%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(247,250,252,1), transparent);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+            font-weight: 500;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 650px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+            line-height: 1.7;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        .section:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: left;
+            margin-bottom: 3rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-emoji {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1.2rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 4.5rem;
+            height: 4.5rem;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .section-emoji::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(135deg, #f093fb, #f5576c, #4facfe, #00f2fe);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.8;
+            animation: rotate 6s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin: 0;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transition: all 0.4s ease;
+            opacity: 1;
+            transform: translateY(0);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card.animate {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card ul {
+            padding-left: 1.5rem;
+            color: #4a5568;
+        }
+
+        .card li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Special styling for principles */
+        .principles-list {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .principle-item {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid;
+            border-image: linear-gradient(135deg, #667eea, #764ba2) 1;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .principle-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .principle-item.animate {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .principle-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .principle-item:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .principle-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .principle-item p {
+            color: #4a5568;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Highlight boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            text-align: center;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .highlight-box.animate {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .highlight-box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .highlight-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-box p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal h2 {
+            color: #2F3E83;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2F3E83;
+            box-shadow: 0 0 0 3px rgba(47, 62, 131, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: #2F3E83;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #253570;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #6b7280;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            color: #374151;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <span class="logo-emoji">👋</span>
+                Shlomi's Manager README
+            </div>
+            <button class="admin-btn" onclick="openAdmin()">Admin Panel</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-emoji">👋</span>
+            <h1 id="heroTitle">Hi, I'm Shlomi - Here's How I Work</h1>
+            <p class="hero-subtitle" id="heroSubtitle">SVP of R&D • Team Builder • Engineering Leader</p>
+            <p class="hero-description" id="heroDescription">Hey there! If you're reading this, we're probably working together or thinking about it. This doc is here to give you a sense of what it's like to work with me, how I think, what I expect, and how I try to support the people around me.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="card">
+                <p id="introContent">I'm a builder by nature - of teams, systems, and the occasional handyman project around the house. I wrote my first lines of code on a Commodore 64 when I was 13 and never really stopped. Since then, I've led engineering orgs of all sizes, from scrappy startups to large-scale R&D groups, and I've always loved the mix of deep tech, strong culture, and real-world impact.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-emoji">🏀</span>
+                <h2 class="section-title">How I See My Role</h2>
+            </div>
+            <div class="card">
+                <p id="roleIntro">Think of me as the R&D team's coach. I'm here to:</p>
+                <ul id="roleList">
+                    <li>Set the context and direction. Help define problems and build the environment to solve them.</li>
+                    <li>Work with you to set clear goals and get the obstacles out of your way.</li>
+                    <li>Support your growth and make sure you're proud of the work you do.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>As SVP of R&D, I try to:</h3>
+                <ul id="svpList">
+                    <li>Set vision and align with company goals</li>
+                    <li>Set a high bar in engineering and ownership</li>
+                    <li>Lead by example, and stretch the team's thinking and craftsmanship</li>
+                    <li>Make sure we connect what we're building to what actually creates value</li>
+                </ul>
+                <p id="trustStatement">I trust smart, passionate and creative people to do great things when the goals are clear.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-emoji">🧠</span>
+                <h2 class="section-title">R&D Principles I Value and Encourage</h2>
+            </div>
+            <div class="principles-list">
+                <div class="principle-item">
+                    <div class="principle-title">Impact and outcomes matter most.</div>
+                    <p>It's not about working hard and being busy - it's about moving things forward in ways that create real value. We use OKRs and KPIs to stay aligned on what matters.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Engineering excellence.</div>
+                    <p>Thoughtful design, clean code, and scalable systems reflect pride in the craft.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Solve real problems, skip the YAGNIs.</div>
+                    <p>When we understand the business and user value, it's easier to focus on MVPs that matter and avoid the overengineering, premature optimization and the "you aren't gonna need it" traps.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Agile > Scrum.</div>
+                    <p>Agile values and engineering principles matter more than ticking boxes in a Scrum playbook. We aim for flexibility, learning, and fast feedback not rigid rituals.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Sustainable delivery > short sprints.</div>
+                    <p>Velocity matters, but we're running a marathon, not a sprint.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Use the right tools for the job.</div>
+                    <p>Languages, frameworks, databases, and paradigms should serve the problem, not the other way around.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Data over opinions.</div>
+                    <p>Let's use metrics to guide decisions, not gut feelings alone.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Failing fast, learn faster.</div>
+                    <p>Mistakes happen - that's how we learn. What matters is how we respond, reflect, and adapt.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">There are always tradeoffs.</div>
+                    <p>I value engineers who can spot them, talk through them, and make thoughtful calls, even if imperfect.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-emoji">📣</span>
+                <h2 class="section-title">Communication</h2>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h3>1:1s are your space</h3>
+                    <p>Use them however they're most helpful from good advice on problem-solving to career growth to occasional venting. I'll come prepared, but what we talk about is totally up to you.</p>
+                </div>
+                <div class="card">
+                    <h3>It's totally OK to say "I don't know"</h3>
+                    <p>It creates the opportunity to learn and improve.</p>
+                </div>
+                <div class="card">
+                    <h3>I process fast</h3>
+                    <p>During one on one conversations I tend to process fast. If it ever feels like I'm not listening - it's probably not the case. Just tell me directly, I really appreciate it.</p>
+                </div>
+                <div class="card">
+                    <h3>Urgent matters</h3>
+                    <p>If something's really urgent or blocking, just give me a call or ping me directly. I'm always happy to help</p>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <h3>I love feedback!</h3>
+                <p>It's critical to my own growth. If you think I could've handled something better or missed the mark, please tell me. I move fast and care deeply - about the work, about learning, and about helping the team grow. If something feels off, just say so. I genuinely want to get better. And when something does work well, I'd love to hear that too.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-emoji">👥</span>
+                <h2 class="section-title">Team Culture</h2>
+            </div>
+            <div class="principles-list">
+                <div class="principle-item">
+                    <div class="principle-title">Clarity fuels growth.</div>
+                    <p>You should know what's expected, how it connects to company goals, and feel 80% confident you can reach it.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Psychological safety matters.</div>
+                    <p>Share your opinions. Take risks. Make mistakes, and share what you learned.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Smart, opinionated teams are stronger.</div>
+                    <p>Disagree with me. Challenge each other. The best ideas win when many are on the table.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Transparency is a value, not a checkbox.</div>
+                    <p>Share early. Ask questions. Push for clarity.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">We take pride in what we do.</div>
+                    <p>And make space to have fun and enjoy the ride.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Personal growth is a team priority.</div>
+                    <p>Mentorship, learning, and stretch goals are baked into how we work.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Feedback should be continuous.</div>
+                    <p>Don't save it for the "right time." Misunderstandings build up when people hold back. Just speak your mind when it comes up.</p>
+                </div>
+                <div class="principle-item">
+                    <div class="principle-title">Default to open.</div>
+                    <p>Information, documents, data, and meetings should be accessible by default unless there's a really good reason it shouldn't.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-emoji">🤝</span>
+                <h2 class="section-title">What You Can Expect From Me</h2>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h3>Clear context</h3>
+                    <p>I'll explain the "why," not just hand down the "what."</p>
+                </div>
+                <div class="card">
+                    <h3>Room to own things</h3>
+                    <p>You'll have the autonomy to lead, question, and challenge ideas (including mine).</p>
+                </div>
+                <div class="card">
+                    <h3>Honesty, even when the topic is tough</h3>
+                    <p>I won't sugarcoat things, but I'll always aim to be fair and respectful.</p>
+                </div>
+                <div class="card">
+                    <h3>Support when things get hard</h3>
+                    <p>Whether it's a tough call, a conflict, or a miss - I've got your back.</p>
+                </div>
+                <div class="card">
+                    <h3>I'll be present when it matters</h3>
+                    <p>In code reviews, tough decisions, or just when you need support.</p>
+                </div>
+                <div class="card">
+                    <h3>Real investment in your growth</h3>
+                    <p>I'll make space for mentorship and feedback, and celebrate your wins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-emoji">📌</span>
+                <h2 class="section-title">What I Expect From You</h2>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h3>Own your domain</h3>
+                    <p>Including the goals, the hard decisions, and the outcomes.</p>
+                </div>
+                <div class="card">
+                    <h3>Be sharp and resourceful</h3>
+                    <p>Understand what needs to happen, then think creatively about how to make it better, faster, or simpler.</p>
+                </div>
+                <div class="card">
+                    <h3>Be curious</h3>
+                    <p>Ask questions, challenge assumptions, seek context. Understanding why and what we are optimizing for, leads to better how.</p>
+                </div>
+                <div class="card">
+                    <h3>Speak your mind</h3>
+                    <p>I value smart, driven people who care deeply and think independently. If you see something that doesn't sit right - challenge the decisions. Healthy disagreement leads to better decisions.</p>
+                </div>
+                <div class="card">
+                    <h3>Be a team player</h3>
+                    <p>Look for ways to grow, and help others do the same.</p>
+                </div>
+                <div class="card">
+                    <h3>Keep me in the loop</h3>
+                    <p>When you proactively share progress, blockers, or decisions, it builds trust and speeds things up for everyone.</p>
+                </div>
+                <div class="card">
+                    <h3>Own your growth</h3>
+                    <p>I'll support you all the way, but I expect you to care about your own development and be proactive in steering it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-emoji">🍕</span>
+                <h2 class="section-title">Beyond the Job</h2>
+            </div>
+            <div class="card">
+                <p id="beyondJobContent">I'm a builder at heart - I've built teams, platforms, and even my own wooden bed. I love helping people navigate ambiguity, solve hard problems, and grow into leadership. I care deeply about mentoring, sharing what I've learned, and learning from others too. I also make a pretty epic Neapolitan pizza - always happy to invite the team for pizza, beer, and a good single malt whiskey night.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p id="footerContent">That's it! If you made it this far, thanks for reading. This README isn't set in stone - it'll grow and change just like we will. Let's build something great!</p>
+        </div>
+    </footer>
+
+    <!-- Admin Modal -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <h2>Admin Panel - Update Content</h2>
+            <form id="adminForm">
+                <div class="form-group">
+                    <label>Admin Password:</label>
+                    <input type="password" id="adminPassword" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Hero Title:</label>
+                    <input type="text" id="editHeroTitle">
+                </div>
+                
+                <div class="form-group">
+                    <label>Hero Subtitle:</label>
+                    <input type="text" id="editHeroSubtitle">
+                </div>
+                
+                <div class="form-group">
+                    <label>Hero Description:</label>
+                    <textarea id="editHeroDescription"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Introduction Content:</label>
+                    <textarea id="editIntroContent"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Role Introduction:</label>
+                    <textarea id="editRoleIntro"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Trust Statement:</label>
+                    <textarea id="editTrustStatement"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Beyond the Job Content:</label>
+                    <textarea id="editBeyondJobContent"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Footer Content:</label>
+                    <textarea id="editFooterContent"></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Update Content</button>
+                <button type="button" class="btn btn-secondary" onclick="closeAdmin()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Progress bar
+        function updateProgressBar() {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Admin functionality
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add animate class to elements that should animate
+            const animatedElements = document.querySelectorAll('.section-title, .card, .principle-item, .highlight-box');
+            animatedElements.forEach(el => {
+                el.classList.add('animate');
+                observer.observe(el);
+            });
+            
+            window.addEventListener('scroll', updateProgressBar);
+        });
+
+        // Admin functionality
+        function openAdmin() {
+            document.getElementById('adminModal').style.display = 'block';
+            loadCurrentContent();
+        }
+        
+        function closeAdmin() {
+            document.getElementById('adminModal').style.display = 'none';
+            document.getElementById('adminForm').reset();
+        }
+        
+        function loadCurrentContent() {
+            document.getElementById('editHeroTitle').value = document.getElementById('heroTitle').textContent;
+            document.getElementById('editHeroSubtitle').value = document.getElementById('heroSubtitle').textContent;
+            document.getElementById('editHeroDescription').value = document.getElementById('heroDescription').textContent;
+            document.getElementById('editIntroContent').value = document.getElementById('introContent').textContent;
+            document.getElementById('editRoleIntro').value = document.getElementById('roleIntro').textContent;
+            document.getElementById('editTrustStatement').value = document.getElementById('trustStatement').textContent;
+            document.getElementById('editBeyondJobContent').value = document.getElementById('beyondJobContent').textContent;
+            document.getElementById('editFooterContent').value = document.getElementById('footerContent').textContent;
+        }
+        
+        document.getElementById('adminForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('adminPassword').value;
+            if (password !== ADMIN_PASSWORD) {
+                alert('Invalid password!');
+                return;
+            }
+            
+            // Update content
+            document.getElementById('heroTitle').textContent = document.getElementById('editHeroTitle').value;
+            document.getElementById('heroSubtitle').textContent = document.getElementById('editHeroSubtitle').value;
+            document.getElementById('heroDescription').textContent = document.getElementById('editHeroDescription').value;
+            document.getElementById('introContent').textContent = document.getElementById('editIntroContent').value;
+            document.getElementById('roleIntro').textContent = document.getElementById('editRoleIntro').value;
+            document.getElementById('trustStatement').textContent = document.getElementById('editTrustStatement').value;
+            document.getElementById('beyondJobContent').textContent = document.getElementById('editBeyondJobContent').value;
+            document.getElementById('footerContent').textContent = document.getElementById('editFooterContent').value;
+            
+            alert('Content updated successfully!');
+            closeAdmin();
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('adminModal');
+            if (e.target === modal) {
+                closeAdmin();
+            }
+        }); 
+        
+        function openAdmin() {
+            document.getElementById('adminModal').style.display = 'block';
+            loadCurrentContent();
+        }
+        
+        function closeAdmin() {
+            document.getElementById('adminModal').style.display = 'none';
+            document.getElementById('adminForm').reset();
+        }
+        
+        function loadCurrentContent() {
+            document.getElementById('editHeroTitle').value = document.getElementById('heroTitle').textContent;
+            document.getElementById('editHeroSubtitle').value = document.getElementById('heroSubtitle').textContent;
+            document.getElementById('editHeroDescription').value = document.getElementById('heroDescription').textContent;
+            document.getElementById('editIntroContent').value = document.getElementById('introContent').textContent;
+            document.getElementById('editRoleIntro').value = document.getElementById('roleIntro').textContent;
+            document.getElementById('editTrustStatement').value = document.getElementById('trustStatement').textContent;
+            document.getElementById('editBeyondJobContent').value = document.getElementById('beyondJobContent').textContent;
+            document.getElementById('editFooterContent').value = document.getElementById('footerContent').textContent;
+        }
+        
+        document.getElementById('adminForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('adminPassword').value;
+            if (password !== ADMIN_PASSWORD) {
+                alert('Invalid password!');
+                return;
+            }
+            
+            // Update content
+            document.getElementById('heroTitle').textContent = document.getElementById('editHeroTitle').value;
+            document.getElementById('heroSubtitle').textContent = document.getElementById('editHeroSubtitle').value;
+            document.getElementById('heroDescription').textContent = document.getElementById('editHeroDescription').value;
+            document.getElementById('introContent').textContent = document.getElementById('editIntroContent').value;
+            document.getElementById('roleIntro').textContent = document.getElementById('editRoleIntro').value;
+            document.getElementById('trustStatement').textContent = document.getElementById('editTrustStatement').value;
+            document.getElementById('beyondJobContent').textContent = document.getElementById('editBeyondJobContent').value;
+            document.getElementById('footerContent').textContent = document.getElementById('editFooterContent').value;
+            
+            alert('Content updated successfully!');
+            closeAdmin();
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('adminModal');
+            if (e.target === modal) {
+                closeAdmin();
+            }
+        });
