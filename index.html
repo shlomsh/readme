@@ -680,7 +680,54 @@
         </div>
     </footer>
 
-    <!-- Removed Admin Modal and related form -->
+    <script>
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const progressBar = document.getElementById('progressBar');
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Section titles
+            document.querySelectorAll('.section-title').forEach(el => {
+                el.classList.add('animate');
+                observer.observe(el);
+            });
+
+            // Cards
+            document.querySelectorAll('.card').forEach(el => {
+                el.classList.add('animate');
+                observer.observe(el);
+            });
+
+            // Principle items
+            document.querySelectorAll('.principle-item').forEach(el => {
+                el.classList.add('animate');
+                observer.observe(el);
+            });
+
+            // Highlight boxes
+            document.querySelectorAll('.highlight-box').forEach(el => {
+                el.classList.add('animate');
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>
-                    
