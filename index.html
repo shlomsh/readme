@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shlomi's Manager README — How I work, what I value, and what you can expect from me as an engineering leader.">
+    <meta name="description" content="Shlomi's Manager README - How I work, what I value, and what you can expect from me as an engineering leader.">
     <meta property="og:title" content="Shlomi's Manager README">
     <meta property="og:description" content="How I work, what I value, and what you can expect from me as an engineering leader.">
     <meta property="og:type" content="website">
@@ -71,13 +71,25 @@
 
         .logo {
             font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 1.6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+            letter-spacing: -0.015em;
+        }
+
+        .logo-main {
+            font-size: 1.4rem;
             font-weight: 600;
             color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            letter-spacing: -0.015em;
+        }
+
+        .logo-secondary {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         .logo-emoji {
@@ -114,7 +126,10 @@
 
         /* Hero Section */
         .hero {
-            padding: 9rem 0 7rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 0;
             background: linear-gradient(135deg, #0C2C55 0%, #1a5a6a 40%, #296374 100%);
             text-align: left;
             position: relative;
@@ -153,23 +168,24 @@
         }
 
         .hero-emoji {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            animation: wave 2s ease-in-out infinite;
+            font-size: 1em;
+            display: inline-block;
+            margin-left: 0.25em;
+            vertical-align: -0.125em;
+            animation: subtleWave 3s ease-in-out infinite;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 0.8s ease-out 0.2s forwards, wave 2s ease-in-out 1s infinite;
+            animation: fadeInUp 0.9s ease-out 0.3s forwards, subtleWave 3s ease-in-out 1s infinite;
         }
 
-        @keyframes wave {
+        @keyframes subtleWave {
             0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(10deg); }
-            75% { transform: rotate(-10deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
         }
 
         .hero h1 {
-            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 600;
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 0.3rem;
@@ -182,8 +198,8 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(2.2rem, 6vw, 4rem);
-            color: #ffffff;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: rgba(255, 255, 255, 0.7);
             margin-bottom: 1rem;
             opacity: 0;
             transform: translateY(30px);
@@ -195,7 +211,7 @@
         }
 
         .hero-role {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.55);
             margin-bottom: 2.5rem;
             opacity: 0;
@@ -555,8 +571,8 @@
     <header class="header">
         <nav class="nav">
             <div class="logo">
-                <span class="logo-emoji">👋</span>
-                Shlomi's Manager README
+                <div class="logo-main">My Manager README</div>
+                <div class="logo-secondary">Here's How I Work</div>
             </div>
             <div class="nav-links">
                 <a href="#role">Role</a>
@@ -570,16 +586,14 @@
 
     <section class="hero">
         <div class="hero-content">
-            <span class="hero-emoji">👋</span>
-            <h1 id="heroTitle">Hi, I'm Shlomi</h1>
-            <p class="hero-subtitle" id="heroSubtitle">Here's How I Work</p>
+            <h1 id="heroTitle">Hi, I'm Shlomi <span class="hero-emoji">👋</span></h1>
             <p class="hero-role">SVP of R&D • Team Builder • Engineering Leader</p>
 
             <div class="hero-narrative">
-                <p id="heroDescription">If you're reading this, we're probably working together or thinking about it. This doc is here to give you a sense of what it's like to work with me—how I think, what I expect, and how I try to support the people around me.</p>
+                <p id="heroDescription">If you're reading this, we're probably working together or thinking about it. This doc is here to give you a sense of what it's like to work with me - how I think, what I expect, and how I try to support the people around me.</p>
             </div>
 
-            <p class="hero-intro" id="introContent">I'm a builder by nature—of teams, systems, and the occasional handyman project around the house. I wrote my first lines of code on a Commodore 64 when I was 13 and never really stopped. Since then, I've led engineering orgs of all sizes, from scrappy startups to large-scale R&D groups, and I've always loved the mix of deep tech, strong culture, and real-world impact.</p>
+            <p class="hero-intro" id="introContent">I'm a builder by nature - of teams, systems, and the occasional handyman project around the house. I wrote my first lines of code on a Commodore 64 when I was 13 and never really stopped. Since then, I've led engineering orgs of all sizes, from scrappy startups to large-scale R&D groups, and I've always loved the mix of deep tech, strong culture, and real-world impact.</p>
         </div>
     </section>
 
