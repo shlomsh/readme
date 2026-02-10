@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Bricolage+Grotesque:wght@600;700;800&family=Sora:wght@400;500;700;800&family=Playfair+Display:wght@700;800&family=Nunito:wght@400;500;700;800&family=Space+Grotesk:wght@500;700;800&family=Outfit:wght@400;500;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #EDEDCE; padding: 2rem; }
+
+        .label {
+            font-family: monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: #0C2C55;
+            color: #629FAD;
+            display: inline-block;
+            padding: 0.3rem 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .option {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 2px solid transparent;
+        }
+
+        .option:hover { border-color: #296374; }
+
+        .option-hero {
+            background: linear-gradient(135deg, #0C2C55 0%, #296374 50%, #629FAD 100%);
+            padding: 2rem 1.5rem 1.5rem;
+        }
+
+        .option-body {
+            padding: 1.5rem;
+        }
+
+        /* Option A: Plus Jakarta Sans + Bricolage Grotesque */
+        .opt-a .hero-h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+        .opt-a .hero-sub {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 500;
+        }
+        .opt-a .card-h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0C2C55;
+            margin-bottom: 0.5rem;
+        }
+        .opt-a .card-p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            color: #0C2C55cc;
+            line-height: 1.7;
+        }
+        .opt-a .nav-logo {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Option B: Sora + Playfair Display */
+        .opt-b .hero-h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+        .opt-b .hero-sub {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 500;
+        }
+        .opt-b .card-h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0C2C55;
+            margin-bottom: 0.5rem;
+        }
+        .opt-b .card-p {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.85rem;
+            color: #0C2C55cc;
+            line-height: 1.7;
+        }
+        .opt-b .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Option C: Nunito + Space Grotesk */
+        .opt-c .hero-h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.03em;
+        }
+        .opt-c .hero-sub {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 500;
+        }
+        .opt-c .card-h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0C2C55;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+        .opt-c .card-p {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            color: #0C2C55cc;
+            line-height: 1.7;
+        }
+        .opt-c .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Option D: Outfit + DM Serif Display */
+        .opt-d .hero-h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0;
+        }
+        .opt-d .hero-sub {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 500;
+        }
+        .opt-d .card-h3 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: #0C2C55;
+            margin-bottom: 0.5rem;
+        }
+        .opt-d .card-p {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            color: #0C2C55cc;
+            line-height: 1.7;
+        }
+        .opt-d .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: white;
+        }
+
+        /* Shared card styles */
+        .option-card {
+            background: #f7f7ec;
+            border: 1px solid #d5d5b8;
+            border-top: 3px solid #629FAD;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .nav-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-title {
+            font-family: monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #0C2C55;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h2.heading {
+            font-family: monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #296374;
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <p class="page-title">Font Options — pick your favorite</p>
+
+    <div class="options">
+
+        <!-- A: Plus Jakarta Sans + Bricolage Grotesque -->
+        <div class="option opt-a">
+            <div class="option-hero">
+                <div class="nav-bar">
+                    <span class="nav-logo">👋 Shlomi's Manager README</span>
+                </div>
+                <div class="hero-h1">Hi, I'm Shlomi — Here's How I Work</div>
+                <div class="hero-sub">SVP of R&D · Team Builder · Engineering Leader</div>
+            </div>
+            <div class="option-body">
+                <div class="label">A · Bricolage Grotesque + Plus Jakarta Sans</div>
+                <h2 class="heading">Section heading</h2>
+                <div class="card-h3" style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;font-weight:800;color:#0C2C55;letter-spacing:-0.02em;margin-bottom:1rem;">How I See My Role</div>
+                <div class="option-card">
+                    <div class="card-h3">1:1s are your space</div>
+                    <div class="card-p">Use them however they're most helpful — from problem-solving to career growth to occasional venting. I'll come prepared, but what we talk about is totally up to you.</div>
+                </div>
+                <div class="option-card" style="margin-top:0.75rem;">
+                    <div class="card-h3">Engineering excellence.</div>
+                    <div class="card-p">Thoughtful design, clean code, and scalable systems reflect pride in the craft.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- B: Sora + Playfair Display -->
+        <div class="option opt-b">
+            <div class="option-hero">
+                <div class="nav-bar">
+                    <span class="nav-logo">👋 Shlomi's Manager README</span>
+                </div>
+                <div class="hero-h1">Hi, I'm Shlomi — Here's How I Work</div>
+                <div class="hero-sub">SVP of R&D · Team Builder · Engineering Leader</div>
+            </div>
+            <div class="option-body">
+                <div class="label">B · Playfair Display + Sora</div>
+                <h2 class="heading">Section heading</h2>
+                <div class="card-h3" style="font-family:'Playfair Display',Georgia,serif;font-size:1.4rem;font-weight:800;color:#0C2C55;margin-bottom:1rem;">How I See My Role</div>
+                <div class="option-card">
+                    <div class="card-h3">1:1s are your space</div>
+                    <div class="card-p">Use them however they're most helpful — from problem-solving to career growth to occasional venting. I'll come prepared, but what we talk about is totally up to you.</div>
+                </div>
+                <div class="option-card" style="margin-top:0.75rem;">
+                    <div class="card-h3">Engineering excellence.</div>
+                    <div class="card-p">Thoughtful design, clean code, and scalable systems reflect pride in the craft.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- C: Space Grotesk + Nunito -->
+        <div class="option opt-c">
+            <div class="option-hero">
+                <div class="nav-bar">
+                    <span class="nav-logo">👋 Shlomi's Manager README</span>
+                </div>
+                <div class="hero-h1">Hi, I'm Shlomi — Here's How I Work</div>
+                <div class="hero-sub">SVP of R&D · Team Builder · Engineering Leader</div>
+            </div>
+            <div class="option-body">
+                <div class="label">C · Space Grotesk + Nunito</div>
+                <h2 class="heading">Section heading</h2>
+                <div class="card-h3" style="font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;color:#0C2C55;letter-spacing:-0.03em;margin-bottom:1rem;">How I See My Role</div>
+                <div class="option-card">
+                    <div class="card-h3">1:1s are your space</div>
+                    <div class="card-p">Use them however they're most helpful — from problem-solving to career growth to occasional venting. I'll come prepared, but what we talk about is totally up to you.</div>
+                </div>
+                <div class="option-card" style="margin-top:0.75rem;">
+                    <div class="card-h3">Engineering excellence.</div>
+                    <div class="card-p">Thoughtful design, clean code, and scalable systems reflect pride in the craft.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- D: Outfit + DM Serif Display -->
+        <div class="option opt-d">
+            <div class="option-hero">
+                <div class="nav-bar">
+                    <span class="nav-logo">👋 Shlomi's Manager README</span>
+                </div>
+                <div class="hero-h1">Hi, I'm Shlomi — Here's How I Work</div>
+                <div class="hero-sub">SVP of R&D · Team Builder · Engineering Leader</div>
+            </div>
+            <div class="option-body">
+                <div class="label">D · DM Serif Display + Outfit</div>
+                <h2 class="heading">Section heading</h2>
+                <div class="card-h3" style="font-family:'DM Serif Display',Georgia,serif;font-size:1.5rem;font-weight:400;color:#0C2C55;margin-bottom:1rem;">How I See My Role</div>
+                <div class="option-card">
+                    <div class="card-h3">1:1s are your space</div>
+                    <div class="card-p">Use them however they're most helpful — from problem-solving to career growth to occasional venting. I'll come prepared, but what we talk about is totally up to you.</div>
+                </div>
+                <div class="option-card" style="margin-top:0.75rem;">
+                    <div class="card-h3">Engineering excellence.</div>
+                    <div class="card-p">Thoughtful design, clean code, and scalable systems reflect pride in the craft.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

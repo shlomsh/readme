@@ -3,21 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shlomi's Manager README — How I work, what I value, and what you can expect from me as an engineering leader.">
+    <meta property="og:title" content="Shlomi's Manager README">
+    <meta property="og:description" content="How I work, what I value, and what you can expect from me as an engineering leader.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>">
     <title>Shlomi's Manager README</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Bricolage+Grotesque:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
+        /*
+         * Ocean & Sage Palette
+         * --------------------------
+         * Navy:         #0C2C55  (hero, header, footer, headings)
+         * Teal:         #296374  (primary accent)
+         * Sky:          #629FAD  (secondary accent)
+         * Cream:        #EDEDCE  (alternating sections)
+         * Text muted:   #0C2C55cc  (body)
+         */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #1a202c;
-            background: #ffffff;
+        html {
             scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #0C2C55;
+            background: #ffffff;
             min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         /* Header */
@@ -25,9 +50,9 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(12, 44, 85, 0.9);
             backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
@@ -43,17 +68,36 @@
         }
 
         .logo {
+            font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e40af;
+            font-weight: 600;
+            color: #ffffff;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
         }
 
         .logo-emoji {
             font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
         }
 
         .progress-bar {
@@ -61,18 +105,40 @@
             top: 0;
             left: 0;
             height: 3px;
-            background: linear-gradient(90deg, #1e40af 0%, #3b82f6 100%);
+            background: linear-gradient(90deg, #296374 0%, #629FAD 100%);
             z-index: 1001;
             transition: width 0.3s ease;
         }
 
         /* Hero Section */
         .hero {
-            padding: 8rem 0 4rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #eff6ff 100%);
+            padding: 10rem 0 5rem;
+            background: linear-gradient(135deg, #0C2C55 0%, #1a4a5a 50%, #296374 100%);
             text-align: center;
             position: relative;
             overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -15%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: rgba(98, 159, 173, 0.1);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: rgba(41, 99, 116, 0.1);
         }
 
         .hero-content {
@@ -99,7 +165,7 @@
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
-            color: #1e293b;
+            color: #ffffff;
             margin-bottom: 1.5rem;
             opacity: 0;
             transform: translateY(30px);
@@ -109,7 +175,7 @@
 
         .hero-subtitle {
             font-size: 1.3rem;
-            color: #475569;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 2rem;
             opacity: 0;
             transform: translateY(30px);
@@ -119,13 +185,26 @@
 
         .hero-description {
             font-size: 1.1rem;
-            color: #64748b;
+            color: rgba(255, 255, 255, 0.6);
             max-width: 650px;
-            margin: 0 auto;
+            margin: 0 auto 2.5rem;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s ease-out 0.9s forwards;
             line-height: 1.7;
+        }
+
+        .hero-intro {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+            line-height: 1.8;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
         }
 
         @keyframes fadeInUp {
@@ -137,16 +216,16 @@
 
         /* Content Sections */
         .section {
-            padding: 4rem 0;
+            padding: 5rem 0;
             position: relative;
         }
 
-        .section:nth-child(even) {
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        .section-light {
+            background: #ffffff;
         }
 
-        .section:nth-child(odd) {
-            background: #ffffff;
+        .section-muted {
+            background: #f2f2e5;
         }
 
         .container {
@@ -166,7 +245,6 @@
 
         .section-emoji {
             font-size: 2.5rem;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
             color: white;
             padding: 1rem;
             border-radius: 16px;
@@ -175,7 +253,16 @@
             justify-content: center;
             min-width: 4rem;
             height: 4rem;
-            box-shadow: 0 4px 20px rgba(30, 64, 175, 0.25);
+        }
+
+        .emoji-navy {
+            background: linear-gradient(135deg, #0C2C55 0%, #296374 100%);
+            box-shadow: 0 4px 20px rgba(41, 99, 116, 0.25);
+        }
+
+        .emoji-sage {
+            background: linear-gradient(135deg, #1e5a6a 0%, #629FAD 100%);
+            box-shadow: 0 4px 20px rgba(98, 159, 173, 0.25);
         }
 
         .section-title {
@@ -185,8 +272,9 @@
             opacity: 0;
             transform: translateX(30px);
             transition: all 0.8s ease;
-            color: #1e293b;
+            color: #0C2C55;
             letter-spacing: -0.02em;
+            scroll-margin-top: 5rem;
         }
 
         .section-title.visible {
@@ -200,12 +288,13 @@
             border-radius: 16px;
             padding: 2.5rem;
             margin-bottom: 2rem;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #d8d8c0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             transition: all 0.4s ease;
             opacity: 1;
             transform: translateY(0);
             position: relative;
+            border-top: 3px solid #629FAD;
         }
 
         .card.animate {
@@ -220,20 +309,20 @@
 
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-            border-color: #3b82f6;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border-top-color: #296374;
         }
 
         .card h3 {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #1e293b;
+            color: #0C2C55;
             margin-bottom: 1rem;
             letter-spacing: -0.01em;
         }
 
         .card p {
-            color: #475569;
+            color: #0C2C55cc;
             line-height: 1.8;
             margin-bottom: 1rem;
             font-size: 1rem;
@@ -245,7 +334,7 @@
 
         .card ul {
             padding-left: 1.5rem;
-            color: #475569;
+            color: #0C2C55cc;
         }
 
         .card li {
@@ -257,14 +346,19 @@
         /* Grid Layout */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        /* Special styling for principles - FIXED BORDER ISSUE */
+        .grid .card {
+            margin-bottom: 0;
+        }
+
+        /* Principles list */
         .principles-list {
             display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
             margin-top: 2rem;
         }
@@ -273,13 +367,13 @@
             background: #ffffff;
             padding: 2rem;
             border-radius: 12px;
-            border-left: 4px solid #3b82f6;
+            border: 1px solid #d8d8c0;
+            border-left: 4px solid #629FAD;
             opacity: 1;
             transform: translateY(0);
             transition: all 0.6s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
             position: relative;
-            border: 1px solid #e2e8f0;
         }
 
         .principle-item.animate {
@@ -294,27 +388,27 @@
 
         .principle-item:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            border-left-color: #1e40af;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-left-color: #296374;
         }
 
         .principle-title {
             font-weight: 700;
             font-size: 1.1rem;
-            color: #1e293b;
+            color: #0C2C55;
             margin-bottom: 0.75rem;
             letter-spacing: -0.01em;
         }
 
         .principle-item p {
-            color: #475569;
+            color: #0C2C55cc;
             line-height: 1.7;
             font-size: 1rem;
         }
 
         /* Highlight boxes */
         .highlight-box {
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            background: linear-gradient(135deg, #1e5a6a 0%, #629FAD 100%);
             color: white;
             padding: 3rem;
             border-radius: 16px;
@@ -323,7 +417,7 @@
             opacity: 1;
             transform: translateY(0);
             transition: all 0.6s ease;
-            box-shadow: 0 8px 30px rgba(30, 64, 175, 0.3);
+            box-shadow: 0 8px 30px rgba(98, 159, 173, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -340,7 +434,7 @@
 
         .highlight-box:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(30, 64, 175, 0.4);
+            box-shadow: 0 12px 40px rgba(98, 159, 173, 0.4);
         }
 
         .highlight-box h3 {
@@ -356,20 +450,30 @@
             line-height: 1.7;
         }
 
-        /* Modal */
-        /* Removed admin modal styles */
-
         /* Footer */
         .footer {
-            background: #1e293b;
+            background: linear-gradient(135deg, #0C2C55 0%, #143a65 100%);
             color: white;
             text-align: center;
-            padding: 4rem 0;
+            padding: 5rem 0;
             position: relative;
         }
 
+        .footer-emoji {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
         .footer p {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 1.1rem;
             line-height: 1.7;
             max-width: 600px;
@@ -378,22 +482,30 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero {
-                padding: 6rem 0 3rem;
+            .nav-links {
+                display: none;
             }
-            
+
+            .hero {
+                padding: 7rem 0 3rem;
+            }
+
             .section {
                 padding: 3rem 0;
             }
-            
+
             .grid {
                 grid-template-columns: 1fr;
             }
-            
+
+            .principles-list {
+                grid-template-columns: 1fr;
+            }
+
             .nav {
                 padding: 0 1rem;
             }
-            
+
             .container {
                 padding: 0 1rem;
             }
@@ -419,7 +531,13 @@
                 <span class="logo-emoji">👋</span>
                 Shlomi's Manager README
             </div>
-            <!-- Removed admin button -->
+            <div class="nav-links">
+                <a href="#role">Role</a>
+                <a href="#principles">Principles</a>
+                <a href="#communication">Communication</a>
+                <a href="#culture">Culture</a>
+                <a href="#expectations">Expectations</a>
+            </div>
         </nav>
     </header>
 
@@ -429,22 +547,15 @@
             <h1 id="heroTitle">Hi, I'm Shlomi - Here's How I Work</h1>
             <p class="hero-subtitle" id="heroSubtitle">SVP of R&D • Team Builder • Engineering Leader</p>
             <p class="hero-description" id="heroDescription">Hey there! If you're reading this, we're probably working together or thinking about it. This doc is here to give you a sense of what it's like to work with me, how I think, what I expect, and how I try to support the people around me.</p>
+            <p class="hero-intro" id="introContent">I'm a builder by nature - of teams, systems, and the occasional handyman project around the house. I wrote my first lines of code on a Commodore 64 when I was 13 and never really stopped. Since then, I've led engineering orgs of all sizes, from scrappy startups to large-scale R&D groups, and I've always loved the mix of deep tech, strong culture, and real-world impact.</p>
         </div>
     </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="card">
-                <p id="introContent">I'm a builder by nature - of teams, systems, and the occasional handyman project around the house. I wrote my first lines of code on a Commodore 64 when I was 13 and never really stopped. Since then, I've led engineering orgs of all sizes, from scrappy startups to large-scale R&D groups, and I've always loved the mix of deep tech, strong culture, and real-world impact.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
+    <section class="section section-light">
         <div class="container">
             <div class="section-header">
-                <span class="section-emoji">🏀</span>
-                <h2 class="section-title">How I See My Role</h2>
+                <span class="section-emoji emoji-navy">🏀</span>
+                <h2 class="section-title" id="role">How I See My Role</h2>
             </div>
             <div class="card">
                 <p id="roleIntro">Think of me as the R&D team's coach. I'm here to:</p>
@@ -467,11 +578,11 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section section-muted">
         <div class="container">
             <div class="section-header">
-                <span class="section-emoji">🧠</span>
-                <h2 class="section-title">R&D Principles I Value and Encourage</h2>
+                <span class="section-emoji emoji-sage">🧠</span>
+                <h2 class="section-title" id="principles">R&D Principles I Value and Encourage</h2>
             </div>
             <div class="principles-list">
                 <div class="principle-item">
@@ -514,11 +625,11 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section section-light">
         <div class="container">
             <div class="section-header">
-                <span class="section-emoji">📣</span>
-                <h2 class="section-title">Communication</h2>
+                <span class="section-emoji emoji-navy">📣</span>
+                <h2 class="section-title" id="communication">Communication</h2>
             </div>
             <div class="grid">
                 <div class="card">
@@ -545,11 +656,11 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section section-muted">
         <div class="container">
             <div class="section-header">
-                <span class="section-emoji">👥</span>
-                <h2 class="section-title">Team Culture</h2>
+                <span class="section-emoji emoji-sage">👥</span>
+                <h2 class="section-title" id="culture">Team Culture</h2>
             </div>
             <div class="principles-list">
                 <div class="principle-item">
@@ -588,11 +699,11 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section section-light">
         <div class="container">
             <div class="section-header">
-                <span class="section-emoji">🤝</span>
-                <h2 class="section-title">What You Can Expect From Me</h2>
+                <span class="section-emoji emoji-navy">🤝</span>
+                <h2 class="section-title" id="expectations">What You Can Expect From Me</h2>
             </div>
             <div class="grid">
                 <div class="card">
@@ -623,10 +734,10 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section section-muted">
         <div class="container">
             <div class="section-header">
-                <span class="section-emoji">📌</span>
+                <span class="section-emoji emoji-sage">📌</span>
                 <h2 class="section-title">What I Expect From You</h2>
             </div>
             <div class="grid">
@@ -662,10 +773,10 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section section-light">
         <div class="container">
             <div class="section-header">
-                <span class="section-emoji">🍕</span>
+                <span class="section-emoji emoji-navy">🍕</span>
                 <h2 class="section-title">Beyond the Job</h2>
             </div>
             <div class="card">
@@ -676,7 +787,9 @@
 
     <footer class="footer">
         <div class="container">
-            <p id="footerContent">That's it! If you made it this far, thanks for reading. This README isn't set in stone - it'll grow and change just like we will. Let's build something great!</p>
+            <span class="footer-emoji">🚀</span>
+            <h3>Let's Build Something Great</h3>
+            <p id="footerContent">That's it! If you made it this far, thanks for reading. This README isn't set in stone - it'll grow and change just like we will.</p>
         </div>
     </footer>
 
@@ -704,25 +817,21 @@
 
         // Observe all animated elements
         document.addEventListener('DOMContentLoaded', () => {
-            // Section titles
             document.querySelectorAll('.section-title').forEach(el => {
                 el.classList.add('animate');
                 observer.observe(el);
             });
 
-            // Cards
             document.querySelectorAll('.card').forEach(el => {
                 el.classList.add('animate');
                 observer.observe(el);
             });
 
-            // Principle items
             document.querySelectorAll('.principle-item').forEach(el => {
                 el.classList.add('animate');
                 observer.observe(el);
             });
 
-            // Highlight boxes
             document.querySelectorAll('.highlight-box').forEach(el => {
                 el.classList.add('animate');
                 observer.observe(el);
