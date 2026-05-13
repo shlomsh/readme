@@ -257,6 +257,38 @@
             }
         }
 
+        .scroll-cue {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            opacity: 0;
+            animation: fadeInUp 0.9s ease-out 1.2s forwards;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .scroll-cue span {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .scroll-cue svg {
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
         /* Content Sections */
         .section {
             padding: 4.5rem 0;
@@ -337,7 +369,11 @@
             opacity: 1;
             transform: translateY(0);
             position: relative;
-            border-top: 3px solid #5a9eb8;
+            border-top: 3px solid #296374;
+        }
+
+        .section-muted .card {
+            border-top-color: #629FAD;
         }
 
         .card.animate {
@@ -351,8 +387,12 @@
         }
 
         .card:hover {
-            transform: translateY(-6px) scale(1.01);
+            transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.12);
+            border-top-color: #0C2C55;
+        }
+
+        .section-muted .card:hover {
             border-top-color: #296374;
         }
 
@@ -423,7 +463,7 @@
             padding: 2rem;
             border-radius: 12px;
             border: 1px solid #dcdcd0;
-            border-left: 3px solid #5a9eb8;
+            border-left: 3px solid #629FAD;
             opacity: 1;
             transform: translateY(0);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -442,7 +482,7 @@
         }
 
         .principle-item:hover {
-            transform: translateY(-6px) scale(1.01);
+            transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 10px 28px rgba(0, 0, 0, 0.1);
             border-left-color: #296374;
         }
@@ -488,7 +528,7 @@
         }
 
         .highlight-box:hover {
-            transform: translateY(-6px) scale(1.01);
+            transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(98, 159, 173, 0.3), 0 16px 40px rgba(98, 159, 173, 0.2);
         }
 
@@ -538,6 +578,10 @@
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
+                display: none;
+            }
+
+            .scroll-cue {
                 display: none;
             }
 
@@ -609,6 +653,12 @@
 
             <p class="hero-intro" id="introContent">I'm a builder by nature - of teams, systems, and the occasional handyman project around the house. I wrote my first lines of code on a Commodore 64 when I was 13 and never really stopped. Since then, I've led engineering orgs of all sizes, from scrappy startups to large-scale R&D groups, and I've always loved the mix of deep tech, strong culture, and real-world impact.</p>
         </div>
+        <a href="#role" class="scroll-cue" aria-label="Scroll to content">
+            <span>scroll</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M5 7.5L10 12.5L15 7.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
     </section>
 
     <section class="section section-light">
